@@ -12,18 +12,19 @@ export default function App() {
   const [cursorInButton, setCursorInButton] = useState(false)
   const [buttonHeldDown, setButtonHeldDown] = useState(false)
 
-  const handleMouseEnter = () =>{
+  const handleMouseEvent = () =>{
     setCursorInButton(true)
+    setButtonHeldDown((pre) => !pre)
   }
-  const handleMouseLeave = () =>{
-    setCursorInButton(true)
-  }
-  const handleMouseDown = () =>{
-    setButtonHeldDown(true)
-  }
-  const handleMouseUp = () =>{
-    setButtonHeldDown(false)
-  }
+  // const handleMouseLeave = () =>{
+  //   setCursorInButton(true)
+  // }
+  // const handleMouseDown = () =>{
+  //   setButtonHeldDown(true)
+  // }
+  // const handleMouseUp = () =>{
+  //   setButtonHeldDown(false)
+  // }
 
   /*------Yukarıdaya eksik state'leri ekleyin----------------------------*/
 
@@ -71,10 +72,10 @@ export default function App() {
       <Thermometer time={+timeToDisplay} />
       <button
        className={buttonClass}
-       onMouseEnter={handleMouseEnter}
-       onMouseLeave={handleMouseLeave}
-       onMouseDown={handleMouseDown}
-       onMouseUp={handleMouseUp}>Basılı Tut</button>
+       onMouseEnter={() => setCursorInButton(true)}
+       onMouseLeave={() => setCursorInButton((pre) => !pre)}
+       onMouseDown={handleMouseEvent}
+       onMouseUp={handleMouseEvent}>Basılı Tut</button>
       <p className='time'>{timeToDisplay} saniye </p>
     </div>
   )
